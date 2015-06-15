@@ -90,10 +90,6 @@
 	 */
 	$.fn.bladeWidgetColumn.defaults = {
 		saveLayout: function(layout) {}
-		, headerBgcolor: '#d7d7d7'
-		, headerFgcolor: '#000'
-		, footerBgcolor: '#d7d7d7'
-		, footerFgcolor: '#000'
 	};
 	
 	function syncHeight(jqElementSet) {

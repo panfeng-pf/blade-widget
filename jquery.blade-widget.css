@@ -40,8 +40,12 @@
 	padding: 3px 6px;
 	cursor: move;
 }
+.widget-header > h3 {
+	margin: 5px;
+	font-size: 14px;
+}
 .widget-max > .widget-header {
-	margin: 10px 10px 0 10px;
+	margin: 20px 20px 0 20px;
 }
 /*-----------------------------------
  * content
@@ -58,7 +62,7 @@
 	height: 100%;
 }
 .widget-max > .widget-content {
-	margin: 0 10px;
+	margin: 0 20px;
 }
 .iframe-mask {
 	position: absolute;
@@ -80,7 +84,7 @@
 	padding: 3px 6px;
 }
 .widget-max > .widget-footer {
-	margin: 0 10px 10px 10px;
+	margin: 0 20px 20px 20px;
 }
 /*-----------------------------------
  * placeholder

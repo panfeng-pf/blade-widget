@@ -88,7 +88,7 @@ Example HTML
     						<button class="btn-max" style="cursor:pointer;" title="Maximize">&#9744;</button>
     						<button class="btn-close" style="cursor:pointer;" title="Close">&#10006;</button>
     					</div>
-    					Widget 1
+    					<h3>Widget 1</h3>
     				</div>
     				<div class="widget-content">
     					<div style="padding:10px;">
@@ -105,7 +105,7 @@ Example HTML
     						<button class="btn-max" style="cursor:pointer;" title="Maximize">&#9744;</button>
     						<button class="btn-close" style="cursor:pointer;" title="Close">&#10006;</button>
     					</div>
-    					Widget 2
+    					<h3>Widget 2</h3>
     				</div>
     				<div class="widget-content" style="height:300px;">
     					<iframe src="http://wap.baidu.com"></iframe>
@@ -127,7 +127,7 @@ Example HTML
     						<button class="btn-max" style="cursor:pointer;" title="Maximize">&#9744;</button>
     						<button class="btn-close" style="cursor:pointer;" title="Close">&#10006;</button>
     					</div>
-    					Widget 3
+    					<h3>Widget 3</h3>
     				</div>
     				<div class="widget-content" style="height:250px;">
     					<iframe src="./iframes/iframe4img.html"></iframe>
@@ -136,46 +136,6 @@ Example HTML
     			</div>
     		
     		</div>
-    		
-    		<!-- ================================== -->
-    		<!-- column 3 -->
-    		<!-- ================================== -->
-    		<div class="widget-column" style="width:40%;">
-    		
-    			<div class="widget" id="D">
-    				<div class="widget-header">
-    					<div style="float:right;">
-    						<button class="btn-min" style="cursor:pointer;" title="Minimize">&mdash;</button>
-    						<button class="btn-max" style="cursor:pointer;" title="Maximize">&#9744;</button>
-    						<button class="btn-close" style="cursor:pointer;" title="Close">&#10006;</button>
-    					</div>
-    					Widget 4
-    				</div>
-    				<div class="widget-content">
-    					<div style="padding:10px;">
-    						Hello world! Hello world! Hello world! Hello world! Hello world! Hello world!
-    					</div>
-    				</div>
-    				<div class="widget-footer">footer</div>
-    			</div>
-    		
-    			<div class="widget" id="E">
-    				<div class="widget-header">
-    					<div style="float:right;">
-    						<button class="btn-min" style="cursor:pointer;" title="Minimize">&mdash;</button>
-    						<button class="btn-max" style="cursor:pointer;" title="Maximize">&#9744;</button>
-    						<button class="btn-close" style="cursor:pointer;" title="Close">&#10006;</button>
-    					</div>
-    					Widget 5
-    				</div>
-    				<div class="widget-content" style="height:100px;">
-    					<iframe src="./iframes/iframe4txt.html"></iframe>
-    				</div>
-    				<div class="widget-footer">footer</div>
-    			</div>
-    		
-    		</div>
-    	</div>
     </body>
     
     <script src="dependency/jquery-1.11.2.min.js"></script>
@@ -225,8 +185,6 @@ Example HTML
     		// add new widget
     		//--------------------------------------
     		$('#btn-add').click(function() {
-    			var jqWgtColFirst = $('.widget-column:first');
-    			
     			var wgtHtml = '';
     			wgtHtml += '<div class="widget">';
     			wgtHtml += '	<div class="widget-header">';
@@ -235,11 +193,13 @@ Example HTML
     			wgtHtml += '			<button class="btn-max" style="cursor:pointer;" title="Maximize">&#9744;</button>';
     			wgtHtml += '			<button class="btn-close" style="cursor:pointer;" title="Close">&#10006;</button>';
     			wgtHtml += '		</div>';
-    			wgtHtml += '		header';
+    			wgtHtml += '		<h3>header</h3>';
     			wgtHtml += '	</div>';
     			wgtHtml += '	<div class="widget-content" style="height:100px;"></div>';
     			wgtHtml += '	<div class="widget-footer">footer</div>';
     			wgtHtml += '</div>';
+				
+    			var jqWgtColFirst = $('.widget-column:first');
     			jqWgtColFirst.append(wgtHtml);
     		});
     	});

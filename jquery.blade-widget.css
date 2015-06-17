@@ -64,9 +64,12 @@
 .widget-max > .widget-content {
 	margin: 0 20px;
 }
+.widget-min > .widget-content {
+	display: none;
+}
 .iframe-mask {
 	position: absolute;
-	background: lightgrey;
+	background: lightyellow;
 	
 	filter: alpha(opacity=60);
 	-moz-opacity: 0.6;
@@ -86,6 +89,9 @@
 .widget-max > .widget-footer {
 	margin: 0 20px 20px 20px;
 }
+.widget-min > .widget-footer {
+	display: none;
+}
 /*-----------------------------------
  * placeholder
  *-----------------------------------
@@ -94,4 +100,5 @@
 	border: 1px dashed black;
 	border-radius: 5px;
 	margin-bottom: 10px;
+	background: lightyellow;
 }

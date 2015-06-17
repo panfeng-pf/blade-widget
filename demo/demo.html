@@ -14,6 +14,8 @@
 <body>
 	<Strong>Blade Widget Demo</strong>
 	<button id="btn-add">+ Add</button>
+	<button id="btn-min-all">&mdash; Minimize All</button>
+	<button id="btn-restore-all">&equiv; Restore All</button>
 	<hr>
 	<div>
 		<!-- ================================== -->
@@ -30,8 +32,10 @@
 					</div>
 					<h3>Widget 1</h3>
 				</div>
-				<div class="widget-content">
+				<div class="widget-content" style="height:100px;overflow:auto;">
 					<div style="padding:10px;">
+						Hello world! Hello world! Hello world! Hello world! Hello world! Hello world!
+						Hello world! Hello world! Hello world! Hello world! Hello world! Hello world!
 						Hello world! Hello world! Hello world! Hello world! Hello world! Hello world!
 					</div>
 				</div>
@@ -91,7 +95,7 @@
 					</div>
 					<h3>Widget 4</h3>
 				</div>
-				<div class="widget-content">
+				<div class="widget-content" style="height:150px;">
 					<div style="padding:10px;">
 						Hello world! Hello world! Hello world! Hello world! Hello world! Hello world!
 					</div>
@@ -188,8 +192,6 @@
 		// add new widget
 		//--------------------------------------
 		$('#btn-add').click(function() {
-			var jqWgtColFirst = $('.widget-column:first');
-			
 			var wgtHtml = '';
 			wgtHtml += '<div class="widget">';
 			wgtHtml += '	<div class="widget-header">';
@@ -198,12 +200,38 @@
 			wgtHtml += '			<button class="btn-max" style="cursor:pointer;" title="Maximize">&#9744;</button>';
 			wgtHtml += '			<button class="btn-close" style="cursor:pointer;" title="Close">&#10006;</button>';
 			wgtHtml += '		</div>';
-			wgtHtml += '		header';
+			wgtHtml += '		<h3>header</h3>';
 			wgtHtml += '	</div>';
 			wgtHtml += '	<div class="widget-content" style="height:100px;"></div>';
 			wgtHtml += '	<div class="widget-footer">footer</div>';
 			wgtHtml += '</div>';
+			
+			var jqWgtColFirst = $('.widget-column:first');
 			jqWgtColFirst.append(wgtHtml);
+		});
+		
+		//--------------------------------------
+		// min all widgets
+		//--------------------------------------
+		$('#btn-min-all').click(function() {
+			jqWgtColSet.find('.widget').each(function() {
+				var jqWgt = $(this);
+				if(! jqWgt.hasClass('widget-min')) {
+					jqWgt.find('.btn-min').click();
+				}
+			});
+		});
+		
+		//--------------------------------------
+		// restore all widgets
+		//--------------------------------------
+		$('#btn-restore-all').click(function() {
+			jqWgtColSet.find('.widget').each(function() {
+				var jqWgt = $(this);
+				if(jqWgt.hasClass('widget-min')) {
+					jqWgt.find('.btn-min').click();
+				}
+			});
 		});
 	});
 </script>

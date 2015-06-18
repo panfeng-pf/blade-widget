@@ -5,34 +5,31 @@
 <html>
 
 <head>
-	<title>Blade Widget Demo</title>
+	<title>Blade Widget Horizontal Demo</title>
 	
 	<!-- style -->
 	<link rel="stylesheet" href="../jquery.blade-widget.css">
 </head>
 
 <body>
-	<Strong>Blade Widget Demo</strong>
+	<Strong>Blade Widget Horizontal Demo</strong>
 	<button id="btn-add">+ Add</button>
-	<button id="btn-min-all">&mdash; Minimize All</button>
-	<button id="btn-restore-all">&equiv; Restore All</button>
 	<hr>
 	<div>
 		<!-- ================================== -->
 		<!-- column 1 -->
 		<!-- ================================== -->
-		<div class="widget-column" style="width:20%;">
+		<div id="row-1" class="widget-row" style="height:200px;">
 	 
-			<div class="widget" id="A">
+			<div class="widget" id="A" style="width:200px;">
 				<div class="widget-header">
 					<div style="float:right;">
-						<button class="btn-min" style="cursor:pointer;" title="Minimize">&mdash;</button>
 						<button class="btn-max" style="cursor:pointer;" title="Maximize">&#9744;</button>
 						<button class="btn-close" style="cursor:pointer;" title="Close">&#10006;</button>
 					</div>
 					<h3>Widget 1</h3>
 				</div>
-				<div class="widget-content" style="height:100px;overflow:auto;">
+				<div class="widget-content" style="overflow:auto;">
 					<div style="padding:10px;">
 						Hello world! Hello world! Hello world! Hello world! Hello world! Hello world!
 						Hello world! Hello world! Hello world! Hello world! Hello world! Hello world!
@@ -42,16 +39,15 @@
 				<div class="widget-footer">footer</div>
 			</div>
 		 
-			<div class="widget" id="B">
+			<div class="widget" id="B" style="width:300px;">
 				<div class="widget-header">
 					<div style="float:right;">
-						<button class="btn-min" style="cursor:pointer;" title="Minimize">&mdash;</button>
 						<button class="btn-max" style="cursor:pointer;" title="Maximize">&#9744;</button>
 						<button class="btn-close" style="cursor:pointer;" title="Close">&#10006;</button>
 					</div>
 					<h3>Widget 2</h3>
 				</div>
-				<div class="widget-content" style="height:300px;">
+				<div class="widget-content">
 					<iframe src="http://wap.baidu.com"></iframe>
 				</div>
 				<div class="widget-footer">footer</div>
@@ -62,18 +58,17 @@
 		<!-- ================================== -->
 		<!-- column 2 -->
 		<!-- ================================== -->
-		<div class="widget-column" style="width:30%;">
+		<div id="row-2" class="widget-row" style="height:150px;">
 		
-			<div class="widget" id="C">
+			<div class="widget" id="C" style="width:300px;">
 				<div class="widget-header">
 					<div style="float:right;">
-						<button class="btn-min" style="cursor:pointer;" title="Minimize">&mdash;</button>
 						<button class="btn-max" style="cursor:pointer;" title="Maximize">&#9744;</button>
 						<button class="btn-close" style="cursor:pointer;" title="Close">&#10006;</button>
 					</div>
 					<h3>Widget 3</h3>
 				</div>
-				<div class="widget-content" style="height:250px;">
+				<div class="widget-content">
 					<iframe src="./iframes/iframe4img.html"></iframe>
 				</div>
 				<div class="widget-footer">footer</div>
@@ -84,18 +79,17 @@
 		<!-- ================================== -->
 		<!-- column 3 -->
 		<!-- ================================== -->
-		<div class="widget-column" style="width:40%;">
+		<div id="row-3" class="widget-row" style="height:200px;">
 		
-			<div class="widget" id="D">
+			<div class="widget" id="D" style="width:300px;">
 				<div class="widget-header">
 					<div style="float:right;">
-						<button class="btn-min" style="cursor:pointer;" title="Minimize">&mdash;</button>
 						<button class="btn-max" style="cursor:pointer;" title="Maximize">&#9744;</button>
 						<button class="btn-close" style="cursor:pointer;" title="Close">&#10006;</button>
 					</div>
 					<h3>Widget 4</h3>
 				</div>
-				<div class="widget-content" style="height:150px;">
+				<div class="widget-content">
 					<div style="padding:10px;">
 						Hello world! Hello world! Hello world! Hello world! Hello world! Hello world!
 					</div>
@@ -103,16 +97,15 @@
 				<div class="widget-footer">footer</div>
 			</div>
 		
-			<div class="widget" id="E">
+			<div class="widget" id="E" style="width:400px;">
 				<div class="widget-header">
 					<div style="float:right;">
-						<button class="btn-min" style="cursor:pointer;" title="Minimize">&mdash;</button>
 						<button class="btn-max" style="cursor:pointer;" title="Maximize">&#9744;</button>
 						<button class="btn-close" style="cursor:pointer;" title="Close">&#10006;</button>
 					</div>
 					<h3>Widget 5</h3>
 				</div>
-				<div class="widget-content" style="height:100px;">
+				<div class="widget-content">
 					<iframe src="./iframes/iframe4txt.html"></iframe>
 				</div>
 				<div class="widget-footer">footer</div>
@@ -130,9 +123,10 @@
 		//--------------------------------------
 		// initial widget column
 		//--------------------------------------
-		var jqWgtColSet = $('.widget-column');
-		jqWgtColSet.bladeWidgetColumn({
-			saveLayout: function(layout) {
+		var jqWgtRowSet = $('.widget-row');
+		jqWgtRowSet.bladeWidgetContainer({
+			mode: 'row'
+			, saveLayout: function(layout) {
 				console.log(JSON.stringify(layout));
 			}
 		});
@@ -140,33 +134,22 @@
 		//--------------------------------------
 		// show widget column border. for test
 		//--------------------------------------
-		jqWgtColSet.css('border', '1px dotted grey');
+		jqWgtRowSet.css('border', '1px dotted grey');
 		
 		//--------------------------------------
 		// widget action buttons
 		//--------------------------------------
-		jqWgtColSet.on('click', '.btn-close', function() {
+		jqWgtRowSet.on('click', '.btn-close', function() {
 			var jqBtn = $(this);
 			var jqWgt = jqBtn.closest('.widget');
 			
 			jqWgt.remove();
 			
-		}).on('click', '.btn-min', function() {
-			var jqBtn = $(this);
-			var jqWgt = jqBtn.closest('.widget');
-			
-			jqWgt.bladeWidget('min-toggle');
-			if(jqWgt.find('.widget-content').is(':hidden')) {
-				jqBtn.html('&equiv;');
-			} else {
-				jqBtn.html('&mdash;');
-			}
-			
 		}).on('click', '.btn-max', function() {
 			var jqBtn = $(this);
 			var jqWgt = jqBtn.closest('.widget');
 			
-			jqWgt.bladeWidget('max-toggle');
+			jqWgt.bladeWidget('toggle-max');
 			if(jqWgt.hasClass('widget-max')) {
 				jqBtn.html('&#9744;<small>]</small>');
 			} else {
@@ -177,15 +160,14 @@
 		//--------------------------------------
 		// handle widget event
 		//--------------------------------------
-		jqWgtColSet.on('blade.widget.win.max', function(e, jqWgt) {
+		jqWgtRowSet.on('blade.widget.win.max', function(e, jqWgt) {
 			var log = 'event "blade.widget.win.max" has triggered by widget whose id is [' + jqWgt.attr('id') + ']';
 			console.log(log);
-		}).on('blade.widget.win.min', function(e, jqWgt) {
-			var log = 'event "blade.widget.win.min" has triggered by widget whose id is [' + jqWgt.attr('id') + ']';
-			console.log(log);
+			
 		}).on('blade.widget.win.restore', function(e, jqWgt) {
 			var log = 'event "blade.widget.win.restore" has triggered by widget whose id is [' + jqWgt.attr('id') + ']';
 			console.log(log);
+			
 		});
 		
 		//--------------------------------------
@@ -193,44 +175,21 @@
 		//--------------------------------------
 		$('#btn-add').click(function() {
 			var wgtHtml = '';
-			wgtHtml += '<div class="widget">';
+			wgtHtml += '<div class="widget" style="width:200px;">';
 			wgtHtml += '	<div class="widget-header">';
 			wgtHtml += '		<div style="float:right;">';
-			wgtHtml += '			<button class="btn-min" style="cursor:pointer;" title="Minimize">&mdash;</button>';
 			wgtHtml += '			<button class="btn-max" style="cursor:pointer;" title="Maximize">&#9744;</button>';
 			wgtHtml += '			<button class="btn-close" style="cursor:pointer;" title="Close">&#10006;</button>';
 			wgtHtml += '		</div>';
 			wgtHtml += '		<h3>header</h3>';
 			wgtHtml += '	</div>';
-			wgtHtml += '	<div class="widget-content" style="height:100px;"></div>';
+			wgtHtml += '	<div class="widget-content"></div>';
 			wgtHtml += '	<div class="widget-footer">footer</div>';
 			wgtHtml += '</div>';
 			
-			var jqWgtColFirst = $('.widget-column:first');
-			jqWgtColFirst.append(wgtHtml);
-		});
-		
-		//--------------------------------------
-		// min all widgets
-		//--------------------------------------
-		$('#btn-min-all').click(function() {
-			jqWgtColSet.find('.widget').each(function() {
-				var jqWgt = $(this);
-				if(! jqWgt.hasClass('widget-min')) {
-					jqWgt.find('.btn-min').click();
-				}
-			});
-		});
-		
-		//--------------------------------------
-		// restore all widgets
-		//--------------------------------------
-		$('#btn-restore-all').click(function() {
-			jqWgtColSet.find('.widget').each(function() {
-				var jqWgt = $(this);
-				if(jqWgt.hasClass('widget-min')) {
-					jqWgt.find('.btn-min').click();
-				}
+			jqWgtRowSet.bladeWidgetContainer({
+				action: 'add'
+				, wgtHtml: wgtHtml
 			});
 		});
 	});

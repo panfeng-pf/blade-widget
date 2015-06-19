@@ -1,14 +1,30 @@
-# blade-widget
+blade-widget
 ==============
-Widget Framework, a jQuery plug-in.<br/>
-A widget framework, basic container is column. One page could have several widget columns, and one column could have several widgets.
-A widget has 3 parts, they are header, footer and content. content could be a iframe. A widget is just like a little window.
-This plug-in depends on jQuery and jQuery UI. Their version in test environment is jQuery v1.11.2 and jQuery UI v1.11.4.
+A jQuery plug-in.<br/>
+A widget framework, basic container could be column or row. One page could have several containers, and one container could have several widgets.<br/>
+A widget has 3 parts, they are header, content and footer. content could be a iframe. A widget is just like a little window.<br/>
+Demo is in package.
+
+Dependency
+--------------
+* jQuery
+* jQuery UI
+
+Test environment
+--------------
+* jQuery v1.11.2
+* jQuery UI v1.11.4
+* web browsers
+	* Firefox v38
+	* Chrome v43
+	* IE v9
 
 How to Use
 --------------
 ### Import CSS
-    <link rel="stylesheet" href="jquery.blade-widget.css">
+```html
+<link rel="stylesheet" href="jquery.blade-widget.css">
+```
 
 ### Import JS
     <script src="jquery.min.js"></script>

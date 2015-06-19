@@ -24,8 +24,8 @@
 			<div class="widget" id="A" style="width:200px;">
 				<div class="widget-header">
 					<div style="float:right;">
-						<button class="btn-max" style="cursor:pointer;" title="Maximize">&#9744;</button>
-						<button class="btn-close" style="cursor:pointer;" title="Close">&#10006;</button>
+						<span class="btn-max" style="cursor:pointer;" title="Maximize">&#9744;</span>
+						<span class="btn-close" style="cursor:pointer;" title="Close">&#10006;</span>
 					</div>
 					<h3>Widget 1</h3>
 				</div>
@@ -42,8 +42,8 @@
 			<div class="widget" id="B" style="width:300px;">
 				<div class="widget-header">
 					<div style="float:right;">
-						<button class="btn-max" style="cursor:pointer;" title="Maximize">&#9744;</button>
-						<button class="btn-close" style="cursor:pointer;" title="Close">&#10006;</button>
+						<span class="btn-max" style="cursor:pointer;" title="Maximize">&#9744;</span>
+						<span class="btn-close" style="cursor:pointer;" title="Close">&#10006;</span>
 					</div>
 					<h3>Widget 2</h3>
 				</div>
@@ -63,8 +63,8 @@
 			<div class="widget" id="C" style="width:300px;">
 				<div class="widget-header">
 					<div style="float:right;">
-						<button class="btn-max" style="cursor:pointer;" title="Maximize">&#9744;</button>
-						<button class="btn-close" style="cursor:pointer;" title="Close">&#10006;</button>
+						<span class="btn-max" style="cursor:pointer;" title="Maximize">&#9744;</span>
+						<span class="btn-close" style="cursor:pointer;" title="Close">&#10006;</span>
 					</div>
 					<h3>Widget 3</h3>
 				</div>
@@ -84,8 +84,8 @@
 			<div class="widget" id="D" style="width:300px;">
 				<div class="widget-header">
 					<div style="float:right;">
-						<button class="btn-max" style="cursor:pointer;" title="Maximize">&#9744;</button>
-						<button class="btn-close" style="cursor:pointer;" title="Close">&#10006;</button>
+						<span class="btn-max" style="cursor:pointer;" title="Maximize">&#9744;</span>
+						<span class="btn-close" style="cursor:pointer;" title="Close">&#10006;</span>
 					</div>
 					<h3>Widget 4</h3>
 				</div>
@@ -100,8 +100,8 @@
 			<div class="widget" id="E" style="width:400px;">
 				<div class="widget-header">
 					<div style="float:right;">
-						<button class="btn-max" style="cursor:pointer;" title="Maximize">&#9744;</button>
-						<button class="btn-close" style="cursor:pointer;" title="Close">&#10006;</button>
+						<span class="btn-max" style="cursor:pointer;" title="Maximize">&#9744;</span>
+						<span class="btn-close" style="cursor:pointer;" title="Close">&#10006;</span>
 					</div>
 					<h3>Widget 5</h3>
 				</div>
@@ -134,7 +134,12 @@
 		//--------------------------------------
 		// show widget column border. for test
 		//--------------------------------------
-		jqWgtRowSet.css('border', '1px dotted grey');
+		jqWgtRowSet.css({
+			'border-width': '0 1px 1px 1px'
+			, 'border-style': 'dotted'
+			, 'border-color': 'grey'
+		});
+		jqWgtRowSet[0].style['border-width'] = '1px';
 		
 		//--------------------------------------
 		// widget action buttons
@@ -178,8 +183,8 @@
 			wgtHtml += '<div class="widget" style="width:200px;">';
 			wgtHtml += '	<div class="widget-header">';
 			wgtHtml += '		<div style="float:right;">';
-			wgtHtml += '			<button class="btn-max" style="cursor:pointer;" title="Maximize">&#9744;</button>';
-			wgtHtml += '			<button class="btn-close" style="cursor:pointer;" title="Close">&#10006;</button>';
+			wgtHtml += '			<span class="btn-max" style="cursor:pointer;" title="Maximize">&#9744;</span>';
+			wgtHtml += '			<span class="btn-close" style="cursor:pointer;" title="Close">&#10006;</span>';
 			wgtHtml += '		</div>';
 			wgtHtml += '		<h3>header</h3>';
 			wgtHtml += '	</div>';

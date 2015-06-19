@@ -17,10 +17,12 @@
 	<hr>
 	<div>
 		<!-- ================================== -->
-		<!-- column 1 -->
+		<!-- row 1 -->
 		<!-- ================================== -->
 		<div id="row-1" class="widget-row" style="height:200px;">
-	 
+			<!-- ================================== -->
+			<!-- widget A -->
+			<!-- ================================== -->
 			<div class="widget" id="A" style="width:200px;">
 				<div class="widget-header">
 					<div style="float:right;">
@@ -39,6 +41,9 @@
 				<div class="widget-footer">footer</div>
 			</div>
 		 
+			<!-- ================================== -->
+			<!-- widget B -->
+			<!-- ================================== -->
 			<div class="widget" id="B" style="width:300px;">
 				<div class="widget-header">
 					<div style="float:right;">
@@ -56,10 +61,12 @@
 		</div>
 		
 		<!-- ================================== -->
-		<!-- column 2 -->
+		<!-- row 2 -->
 		<!-- ================================== -->
 		<div id="row-2" class="widget-row" style="height:150px;">
-		
+			<!-- ================================== -->
+			<!-- widget C -->
+			<!-- ================================== -->
 			<div class="widget" id="C" style="width:300px;">
 				<div class="widget-header">
 					<div style="float:right;">
@@ -77,10 +84,12 @@
 		</div>
 		
 		<!-- ================================== -->
-		<!-- column 3 -->
+		<!-- row 3 -->
 		<!-- ================================== -->
 		<div id="row-3" class="widget-row" style="height:200px;">
-		
+			<!-- ================================== -->
+			<!-- widget D -->
+			<!-- ================================== -->
 			<div class="widget" id="D" style="width:300px;">
 				<div class="widget-header">
 					<div style="float:right;">
@@ -97,6 +106,9 @@
 				<div class="widget-footer">footer</div>
 			</div>
 		
+			<!-- ================================== -->
+			<!-- widget E -->
+			<!-- ================================== -->
 			<div class="widget" id="E" style="width:400px;">
 				<div class="widget-header">
 					<div style="float:right;">
@@ -121,7 +133,7 @@
 <script type="text/javascript">
 	$(function() {
 		//--------------------------------------
-		// initial widget column
+		// initial widget row
 		//--------------------------------------
 		var jqWgtRowSet = $('.widget-row');
 		jqWgtRowSet.bladeWidgetContainer({
@@ -132,7 +144,7 @@
 		});
 		
 		//--------------------------------------
-		// show widget column border. for test
+		// show widget row border. for test
 		//--------------------------------------
 		jqWgtRowSet.css({
 			'border-width': '0 1px 1px 1px'

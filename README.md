@@ -62,7 +62,7 @@ $('selector').bladeWidget('toggle-min');
 $('selector').bladeWidget('toggle-max');
 ```
 
-### widget events
+### Widget events
 * blade.widget.win.min
 * blade.widget.win.max
 * blade.widget.win.restore
@@ -267,6 +267,160 @@ Example for column mode
 				if(jqWgt.hasClass('widget-min')) {
 					jqWgt.find('.btn-min').click();
 				}
+			});
+		});
+	});
+</script>
+</html>
+```
+
+Example for row mode
+--------------
+```html
+<html>
+<head>
+	<title>Blade Widget Horizontal Demo</title>
+	<link rel="stylesheet" href="../jquery.blade-widget.css">
+</head>
+<body>
+	<Strong>Blade Widget Horizontal Demo</strong>
+	<button id="btn-add">+ Add</button>
+	<hr>
+	<div>
+		<!-- ================================== -->
+		<!-- row 1 -->
+		<!-- ================================== -->
+		<div id="row-1" class="widget-row" style="height:200px;">
+			<!-- ================================== -->
+			<!-- widget A -->
+			<!-- ================================== -->
+			<div class="widget" id="A" style="width:200px;">
+				<div class="widget-header">
+					<div style="float:right;">
+						<span class="btn-max" style="cursor:pointer;" title="Maximize">&#9744;</span>
+						<span class="btn-close" style="cursor:pointer;" title="Close">&#10006;</span>
+					</div>
+					<h3>Widget 1</h3>
+				</div>
+				<div class="widget-content" style="overflow:auto;">
+					<div style="padding:10px;">
+						Hello world! Hello world! Hello world! Hello world! Hello world! Hello world!
+						Hello world! Hello world! Hello world! Hello world! Hello world! Hello world!
+						Hello world! Hello world! Hello world! Hello world! Hello world! Hello world!
+					</div>
+				</div>
+				<div class="widget-footer">footer</div>
+			</div>
+		 
+			<!-- ================================== -->
+			<!-- widget B -->
+			<!-- ================================== -->
+			<div class="widget" id="B" style="width:300px;">
+				<div class="widget-header">
+					<div style="float:right;">
+						<span class="btn-max" style="cursor:pointer;" title="Maximize">&#9744;</span>
+						<span class="btn-close" style="cursor:pointer;" title="Close">&#10006;</span>
+					</div>
+					<h3>Widget 2</h3>
+				</div>
+				<div class="widget-content">
+					<iframe src="http://wap.baidu.com"></iframe>
+				</div>
+				<div class="widget-footer">footer</div>
+			</div>
+		</div>
+		
+		<!-- ================================== -->
+		<!-- row 2 -->
+		<!-- ================================== -->
+		<div id="row-2" class="widget-row" style="height:150px;">
+			<!-- ================================== -->
+			<!-- widget C -->
+			<!-- ================================== -->
+			<div class="widget" id="C" style="width:300px;">
+				<div class="widget-header">
+					<div style="float:right;">
+						<span class="btn-max" style="cursor:pointer;" title="Maximize">&#9744;</span>
+						<span class="btn-close" style="cursor:pointer;" title="Close">&#10006;</span>
+					</div>
+					<h3>Widget 3</h3>
+				</div>
+				<div class="widget-content">
+					<iframe src="./iframes/iframe4img.html"></iframe>
+				</div>
+				<div class="widget-footer">footer</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+<script src="dependency/jquery-1.11.2.min.js"></script>
+<script src="dependency/jquery-ui-1.11.4/jquery-ui.min.js"></script>
+<script src="../jquery.blade-widget.js"></script>
+<script type="text/javascript">
+	$(function() {
+		//--------------------------------------
+		// initial widget row
+		//--------------------------------------
+		var jqWgtRowSet = $('.widget-row');
+		jqWgtRowSet.bladeWidgetContainer({
+			mode: 'row'
+			, saveLayout: function(layout) {
+				console.log(JSON.stringify(layout));
+			}
+		});
+		
+		//--------------------------------------
+		// widget action buttons
+		//--------------------------------------
+		jqWgtRowSet.on('click', '.btn-close', function() {
+			var jqBtn = $(this);
+			var jqWgt = jqBtn.closest('.widget');
+			
+			jqWgt.remove();
+		}).on('click', '.btn-max', function() {
+			var jqBtn = $(this);
+			var jqWgt = jqBtn.closest('.widget');
+			
+			jqWgt.bladeWidget('toggle-max');
+			if(jqWgt.hasClass('widget-max')) {
+				jqBtn.html('&#9744;<small>]</small>');
+			} else {
+				jqBtn.html('&#9744;');
+			}
+		});
+		
+		//--------------------------------------
+		// handle widget event
+		//--------------------------------------
+		jqWgtRowSet.on('blade.widget.win.max', function(e, jqWgt) {
+			var log = 'event "blade.widget.win.max" has triggered by widget whose id is [' + jqWgt.attr('id') + ']';
+			console.log(log);
+		}).on('blade.widget.win.restore', function(e, jqWgt) {
+			var log = 'event "blade.widget.win.restore" has triggered by widget whose id is [' + jqWgt.attr('id') + ']';
+			console.log(log);
+		});
+		
+		//--------------------------------------
+		// add new widget
+		//--------------------------------------
+		$('#btn-add').click(function() {
+			var wgtHtml = '';
+			wgtHtml += '<div class="widget" style="width:200px;">';
+			wgtHtml += '	<div class="widget-header">';
+			wgtHtml += '		<div style="float:right;">';
+			wgtHtml += '			<span class="btn-max" style="cursor:pointer;" title="Maximize">&#9744;</span>';
+			wgtHtml += '			<span class="btn-close" style="cursor:pointer;" title="Close">&#10006;</span>';
+			wgtHtml += '		</div>';
+			wgtHtml += '		<h3>header</h3>';
+			wgtHtml += '	</div>';
+			wgtHtml += '	<div class="widget-content"></div>';
+			wgtHtml += '	<div class="widget-footer">footer</div>';
+			wgtHtml += '</div>';
+			
+			jqWgtRowSet.bladeWidgetContainer({
+				action: 'add'
+				, wgtHtml: wgtHtml
 			});
 		});
 	});

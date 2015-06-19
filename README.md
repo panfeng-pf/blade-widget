@@ -27,198 +27,249 @@ How to Use
 ```
 
 ### Import JS
-    <script src="jquery.min.js"></script>
-    <script src="jquery-ui.min.js"></script>
-    <script src="jquery.blade-widget.js"></script>
+```html
+<script src="jquery.min.js"></script>
+<script src="jquery-ui.min.js"></script>
+<script src="jquery.blade-widget.js"></script>
+```
 
-### Initial widget column
-    <script type="text/javascript">
-      $(function() {
-        $('selector').bladeWidgetColumn();
-        // or $('selector').bladeWidgetColumn({option});
-      }
-    </script>
+### widget container functions
+```javascript
+// initial container
+$('selector').bladeWidgetContainer(); // or $('selector').bladeWidgetContainer(options);
+
+// add widget into container
+$('selector').bladeWidgetContainer({
+	action: 'add'
+	, wgtHtml: '...'
+});
+```
 
 ### Option description and default value
-    {
-      saveLayout: function(layout) {} //callback function for save layout, parameter is a JSON object, format is [{'id':'x', 'col':y, 'row':z}, ...]
-      
-    }
+```javascript
+{
+	mode: 'column'  /* column | row */
+	, saveLayout: function(layout) {} /* callback function for save layout, parameter is a JSON object, format is [{'id':'x', 'col':y, 'row':z}, ...] */
+}
+```
 
 ### Widget functions
-    <script type="text/javascript">
-      $(function() {
-        // minimize widget, and restore it
-		$('selector').bladeWidget('min-toggle');
-		
-		// maximize widget and restore it
-        $('selector').bladeWidget('min-toggle');
-      }
-    </script>
+```javascript
+// minimize widget, and restore it
+$('selector').bladeWidget('toggle-min');
+
+// maximize widget and restore it
+$('selector').bladeWidget('toggle-max');
+```
 
 ### widget events
-    blade.widget.win.min
-	blade.widget.win.max
-	blade.widget.win.restore
+* blade.widget.win.min
+* blade.widget.win.max
+* blade.widget.win.restore
 	
-	<script type="text/javascript">
-      $(function() {
-        $('selector').on('blade.widget.win.max', function(e, jqWgt) {
-        	var log = 'event "blade.widget.win.max" has triggered by widget whose id is [' + jqWgt.attr('id') + ']';
-        	console.log(log);
-        }).on('blade.widget.win.min', function(e, jqWgt) {
-        	var log = 'event "blade.widget.win.min" has triggered by widget whose id is [' + jqWgt.attr('id') + ']';
-        	console.log(log);
-        }).on('blade.widget.win.restore', function(e, jqWgt) {
-        	var log = 'event "blade.widget.win.restore" has triggered by widget whose id is [' + jqWgt.attr('id') + ']';
-        	console.log(log);
-        });
-      }
-    </script>
+```javascript
+$('selector').on('blade.widget.win.max', function(e, jqWgt) {
+	console.log('event "blade.widget.win.max" has triggered');
+}).on('blade.widget.win.min', function(e, jqWgt) {
+	console.log('event "blade.widget.win.min" has triggered');
+}).on('blade.widget.win.restore', function(e, jqWgt) {
+	console.log('event "blade.widget.win.restore" has triggered');
+});
+```
 
-Example HTML
+Example for column mode
 --------------
-    <html>
-    
-    <head>
-    	<title>Blade Widget Demo</title>
-    	
-    	<!-- style -->
-    	<link rel="stylesheet" href="../jquery.blade-widget.css">
-    </head>
-    
-    <body>
-    	<Strong>Blade Widget Demo</strong>
-    	<button id="btn-add">+ Add</button>
-    	<hr>
-    	<div>
-    		<!-- ================================== -->
-    		<!-- column 1 -->
-    		<!-- ================================== -->
-    		<div class="widget-column" style="width:20%;">
-    	 
-    			<div class="widget" id="A">
-    				<div class="widget-header">
-    					<div style="float:right;">
-    						<button class="btn-min" style="cursor:pointer;" title="Minimize">&mdash;</button>
-    						<button class="btn-max" style="cursor:pointer;" title="Maximize">&#9744;</button>
-    						<button class="btn-close" style="cursor:pointer;" title="Close">&#10006;</button>
-    					</div>
-    					<h3>Widget 1</h3>
-    				</div>
-    				<div class="widget-content">
-    					<div style="padding:10px;">
-    						Hello world! Hello world! Hello world! Hello world! Hello world! Hello world!
-    					</div>
-    				</div>
-    				<div class="widget-footer">footer</div>
-    			</div>
-    		 
-    			<div class="widget" id="B">
-    				<div class="widget-header">
-    					<div style="float:right;">
-    						<button class="btn-min" style="cursor:pointer;" title="Minimize">&mdash;</button>
-    						<button class="btn-max" style="cursor:pointer;" title="Maximize">&#9744;</button>
-    						<button class="btn-close" style="cursor:pointer;" title="Close">&#10006;</button>
-    					</div>
-    					<h3>Widget 2</h3>
-    				</div>
-    				<div class="widget-content" style="height:300px;">
-    					<iframe src="http://wap.baidu.com"></iframe>
-    				</div>
-    				<div class="widget-footer">footer</div>
-    			</div>
-    		
-    		</div>
-    		
-    		<!-- ================================== -->
-    		<!-- column 2 -->
-    		<!-- ================================== -->
-    		<div class="widget-column" style="width:30%;">
-    		
-    			<div class="widget" id="C">
-    				<div class="widget-header">
-    					<div style="float:right;">
-    						<button class="btn-min" style="cursor:pointer;" title="Minimize">&mdash;</button>
-    						<button class="btn-max" style="cursor:pointer;" title="Maximize">&#9744;</button>
-    						<button class="btn-close" style="cursor:pointer;" title="Close">&#10006;</button>
-    					</div>
-    					<h3>Widget 3</h3>
-    				</div>
-    				<div class="widget-content" style="height:250px;">
-    					<iframe src="./iframes/iframe4img.html"></iframe>
-    				</div>
-    				<div class="widget-footer">footer</div>
-    			</div>
-    		
-    		</div>
-    </body>
-    
-    <script src="dependency/jquery-1.11.2.min.js"></script>
-    <script src="dependency/jquery-ui-1.11.4/jquery-ui.min.js"></script>
-    <script src="../jquery.blade-widget.js"></script>
-    <script type="text/javascript">
-    	$(function() {
-    		//--------------------------------------
-    		// initial widget column
-    		//--------------------------------------
-    		var jqWgtColSet = $('.widget-column');
-    		jqWgtColSet.bladeWidgetColumn();
-    		
-    		//--------------------------------------
-    		// widget action buttons
-    		//--------------------------------------
-    		jqWgtColSet.on('click', '.btn-close', function() {
-    			var jqBtn = $(this);
-    			var jqWgt = jqBtn.closest('.widget');
-    			
-    			jqWgt.remove();
-    			
-    		}).on('click', '.btn-min', function() {
-    			var jqBtn = $(this);
-    			var jqWgt = jqBtn.closest('.widget');
-    			
-    			jqWgt.bladeWidget('min-toggle');
-    			if(jqWgt.find('.widget-content').is(':hidden')) {
-    				jqBtn.html('&equiv;');
-    			} else {
-    				jqBtn.html('&mdash;');
-    			}
-    			
-    		}).on('click', '.btn-max', function() {
-    			var jqBtn = $(this);
-    			var jqWgt = jqBtn.closest('.widget');
-    			
-    			jqWgt.bladeWidget('max-toggle');
-    			if(jqWgt.hasClass('widget-max')) {
-    				jqBtn.html('&#9744;<small>]</small>');
-    			} else {
-    				jqBtn.html('&#9744;');
-    			}
-    		});
-    		
-    		//--------------------------------------
-    		// add new widget
-    		//--------------------------------------
-    		$('#btn-add').click(function() {
-    			var wgtHtml = '';
-    			wgtHtml += '<div class="widget">';
-    			wgtHtml += '	<div class="widget-header">';
-    			wgtHtml += '		<div style="float:right;">';
-    			wgtHtml += '			<button class="btn-min" style="cursor:pointer;" title="Minimize">&mdash;</button>';
-    			wgtHtml += '			<button class="btn-max" style="cursor:pointer;" title="Maximize">&#9744;</button>';
-    			wgtHtml += '			<button class="btn-close" style="cursor:pointer;" title="Close">&#10006;</button>';
-    			wgtHtml += '		</div>';
-    			wgtHtml += '		<h3>header</h3>';
-    			wgtHtml += '	</div>';
-    			wgtHtml += '	<div class="widget-content" style="height:100px;"></div>';
-    			wgtHtml += '	<div class="widget-footer">footer</div>';
-    			wgtHtml += '</div>';
-				
-    			var jqWgtColFirst = $('.widget-column:first');
-    			jqWgtColFirst.append(wgtHtml);
-    		});
-    	});
-    </script>
-    
-    </html>
+```html
+<html>
+<head>
+	<title>Blade Widget Vertical Demo</title>
+	<link rel="stylesheet" href="../jquery.blade-widget.css">
+</head>
+<body>
+	<Strong>Blade Widget Vertical Demo</strong>
+	<button id="btn-add">+ Add</button>
+	<button id="btn-min-all">&mdash; Minimize All</button>
+	<button id="btn-restore-all">&equiv; Restore All</button>
+	<hr>
+	<div>
+		<!-- ================================== -->
+		<!-- column 1 -->
+		<!-- ================================== -->
+		<div class="widget-column" style="width:20%;">
+			<!-- ================================== -->
+			<!-- widget A -->
+			<!-- ================================== -->
+			<div class="widget" id="A">
+				<div class="widget-header">
+					<div style="float:right;">
+						<span class="btn-min" style="cursor:pointer;" title="Minimize">&mdash;</span>
+						<span class="btn-max" style="cursor:pointer;" title="Maximize">&#9744;</span>
+						<span class="btn-close" style="cursor:pointer;" title="Close">&#10006;</span>
+					</div>
+					<h3>Widget 1</h3>
+				</div>
+				<div class="widget-content" style="height:200px;overflow:auto;">
+					<div style="padding:10px;">
+						Hello world! Hello world! Hello world! Hello world! Hello world! Hello world!
+						Hello world! Hello world! Hello world! Hello world! Hello world! Hello world!
+						Hello world! Hello world! Hello world! Hello world! Hello world! Hello world!
+					</div>
+				</div>
+				<div class="widget-footer">footer</div>
+			</div>
+		 
+			<!-- ================================== -->
+			<!-- widget B -->
+			<!-- ================================== -->
+			<div class="widget" id="B">
+				<div class="widget-header">
+					<div style="float:right;">
+						<span class="btn-min" style="cursor:pointer;" title="Minimize">&mdash;</span>
+						<span class="btn-max" style="cursor:pointer;" title="Maximize">&#9744;</span>
+						<span class="btn-close" style="cursor:pointer;" title="Close">&#10006;</span>
+					</div>
+					<h3>Widget 2</h3>
+				</div>
+				<div class="widget-content" style="height:300px;">
+					<iframe src="http://wap.baidu.com"></iframe>
+				</div>
+				<div class="widget-footer">footer</div>
+			</div>
+		</div>
+		
+		<!-- ================================== -->
+		<!-- column 2 -->
+		<!-- ================================== -->
+		<div class="widget-column" style="width:30%;">
+			<!-- ================================== -->
+			<!-- widget C -->
+			<!-- ================================== -->
+			<div class="widget" id="C">
+				<div class="widget-header">
+					<div style="float:right;">
+						<span class="btn-min" style="cursor:pointer;" title="Minimize">&mdash;</span>
+						<span class="btn-max" style="cursor:pointer;" title="Maximize">&#9744;</span>
+						<span class="btn-close" style="cursor:pointer;" title="Close">&#10006;</span>
+					</div>
+					<h3>Widget 3</h3>
+				</div>
+				<div class="widget-content" style="height:250px;">
+					<iframe src="./iframes/iframe4img.html"></iframe>
+				</div>
+				<div class="widget-footer">footer</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+<script src="dependency/jquery-1.11.2.min.js"></script>
+<script src="dependency/jquery-ui-1.11.4/jquery-ui.min.js"></script>
+<script src="../jquery.blade-widget.js"></script>
+<script type="text/javascript">
+	$(function() {
+		//--------------------------------------
+		// initial widget column
+		//--------------------------------------
+		var jqWgtColSet = $('.widget-column');
+		jqWgtColSet.bladeWidgetContainer({
+			mode: 'column'
+			, saveLayout: function(layout) {
+				console.log(JSON.stringify(layout));
+			}
+		});
+		
+		//--------------------------------------
+		// widget action buttons
+		//--------------------------------------
+		jqWgtColSet.on('click', '.btn-close', function() {
+			var jqBtn = $(this);
+			var jqWgt = jqBtn.closest('.widget');
+			
+			jqWgt.remove();
+		}).on('click', '.btn-min', function() {
+			var jqBtn = $(this);
+			var jqWgt = jqBtn.closest('.widget');
+			
+			jqWgt.bladeWidget('toggle-min');
+			if(jqWgt.hasClass('widget-min')) {
+				jqBtn.html('&equiv;');
+			} else {
+				jqBtn.html('&mdash;');
+			}
+		}).on('click', '.btn-max', function() {
+			var jqBtn = $(this);
+			var jqWgt = jqBtn.closest('.widget');
+			
+			jqWgt.bladeWidget('toggle-max');
+			if(jqWgt.hasClass('widget-max')) {
+				jqBtn.html('&#9744;<small>]</small>');
+			} else {
+				jqBtn.html('&#9744;');
+			}
+		});
+		
+		//--------------------------------------
+		// handle widget event
+		//--------------------------------------
+		jqWgtColSet.on('blade.widget.win.max', function(e, jqWgt) {
+			var log = 'event "blade.widget.win.max" has triggered by widget whose id is [' + jqWgt.attr('id') + ']';
+			console.log(log);
+		}).on('blade.widget.win.min', function(e, jqWgt) {
+			var log = 'event "blade.widget.win.min" has triggered by widget whose id is [' + jqWgt.attr('id') + ']';
+			console.log(log);
+		}).on('blade.widget.win.restore', function(e, jqWgt) {
+			var log = 'event "blade.widget.win.restore" has triggered by widget whose id is [' + jqWgt.attr('id') + ']';
+			console.log(log);
+		});
+		
+		//--------------------------------------
+		// add new widget
+		//--------------------------------------
+		$('#btn-add').click(function() {
+			var wgtHtml = '';
+			wgtHtml += '<div class="widget">';
+			wgtHtml += '	<div class="widget-header">';
+			wgtHtml += '		<div style="float:right;">';
+			wgtHtml += '			<span class="btn-min" style="cursor:pointer;" title="Minimize">&mdash;</span>';
+			wgtHtml += '			<span class="btn-max" style="cursor:pointer;" title="Maximize">&#9744;</span>';
+			wgtHtml += '			<span class="btn-close" style="cursor:pointer;" title="Close">&#10006;</span>';
+			wgtHtml += '		</div>';
+			wgtHtml += '		<h3>header</h3>';
+			wgtHtml += '	</div>';
+			wgtHtml += '	<div class="widget-content" style="height:100px;"></div>';
+			wgtHtml += '	<div class="widget-footer">footer</div>';
+			wgtHtml += '</div>';
+			
+			jqWgtColSet.bladeWidgetContainer({
+				action: 'add'
+				, wgtHtml: wgtHtml
+			});
+		});
+		
+		//--------------------------------------
+		// minimize all widgets
+		//--------------------------------------
+		$('#btn-min-all').click(function() {
+			jqWgtColSet.find('.widget').each(function() {
+				var jqWgt = $(this);
+				if(! jqWgt.hasClass('widget-min')) {
+					jqWgt.find('.btn-min').click();
+				}
+			});
+		});
+		
+		//--------------------------------------
+		// restore all widgets
+		//--------------------------------------
+		$('#btn-restore-all').click(function() {
+			jqWgtColSet.find('.widget').each(function() {
+				var jqWgt = $(this);
+				if(jqWgt.hasClass('widget-min')) {
+					jqWgt.find('.btn-min').click();
+				}
+			});
+		});
+	});
+</script>
+</html>
+```
